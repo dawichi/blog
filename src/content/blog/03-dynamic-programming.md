@@ -29,7 +29,7 @@ Here, we have a recursive function that calculates the nº number of fibonacci. 
 
 When we calculate `f(5)`, we have to calculate `f(4)` and `f(3)`. But later, when we calculate `f(4)`, we have to calculate `f(3)` again! We are overlapping the calculations, wasting computational resources.
 
-![fibonacci](/assets/img/blog/fibonacci.svg)
+![fibonacci](/images/blog/fibonacci.svg)
 
 As we can see here, we are calculating the same numbers over and over again.
 
@@ -144,4 +144,4 @@ On the top of this, we can use the array or dictionary used for memoization to c
 
 This is just a basic example of the methodologies of Dynamic Programming. There are many more, but all of them consists in the same idea of optimizing the problem to avoid lose time and resources.
 
-![code_gif_from_giphy](/assets/img/blog/endings/3.gif)
+![code_gif_from_giphy](/images/blog/endings/3.gif)

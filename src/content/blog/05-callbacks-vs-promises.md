@@ -273,4 +273,4 @@ Right now, to work with asynchronous code is easier than ever. We have extremly 
 
 Pick the tool that you like the most, try it and use it to solve your own code problems, because that's the best way to learn.
 
-![code_gif_from_giphy](/assets/img/blog/endings/5.gif)
+![code_gif_from_giphy](/images/blog/endings/5.gif)

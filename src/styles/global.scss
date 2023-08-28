@@ -31,7 +31,7 @@ html, body {
 	}
 }
 
-.post-article {
+.dw-blog-article {
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	h1, h2, h3, h4 {
 		margin-top: 30px;
@@ -80,11 +80,11 @@ html, body {
 
 	p > code,
 	li > code {
-		background-color: #27272a;
+		color: #ef4444;
+		background-color: rgba(136, 136, 136, 0.2);
 		padding: 1px 5px;
 		margin: 0 3px;
 		border-radius: 3px;
-		color: white;
 	}
 
     blockquote {
@@ -98,21 +98,17 @@ html, body {
         }
     }
 
-	pre[class*='language-'] {
-		background-color: #27272a;
-		background-image: url(/assets/img/window-buttons.png);
+	pre[class*='astro-code github-dark'] {
+		background-image: url(/images/window-buttons.png);
 		background-repeat: no-repeat;
 		background-size: 44px 10px;
 		background-position: 16px 14px;
 		padding: 2rem 1rem 1rem 1rem;
-		overflow-x: auto;
-		border: none;
-		box-shadow: none;
+        border-radius: 8px;
 		
 		@media screen and (min-width: 500px) {
 			background-size: 66px 15px;
 			padding: 3rem 1rem 1rem 2rem;
-			font-size: 1.15rem;
 		}
 	}
 

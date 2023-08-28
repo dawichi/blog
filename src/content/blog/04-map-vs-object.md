@@ -172,4 +172,4 @@ map.get('print')() // Hi I am !
 
 Object is more than a hash table, with inner logic, inheritance and more flexible features. In the other hand, Map has better performance when we want to store large sets of data, specially if all the keys and values are the same type.
 
-![code_gif_from_giphy](/assets/img/blog/endings/4.gif)
+![code_gif_from_giphy](/images/blog/endings/4.gif)

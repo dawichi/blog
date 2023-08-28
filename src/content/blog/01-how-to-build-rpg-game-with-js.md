@@ -10,7 +10,7 @@ A few months ago I came up with the idea of creating a game in JavaScript.
 
 I had no knowledge about game programming up to that point and I was afraid of how a system with so many variables and interactions could be made from 0. Here I'll walk you through the process I went through to create this project, what problems I ran into, and how to avoid them.
 
-Check the result here: [hexakill.vercel.app](https://hexakill.vercel.app/single) 🎉🎉🎉
+Check the result here: [hexakill.vercel.app](https://hexakill.vercel.app) 🎉🎉🎉
 
 ## 1. Planing
 
@@ -150,7 +150,7 @@ The game loop will consist in 2 loops: the 'fight loop' and the 'turn loop'
 Each game consists of a sequence of multiple fights against different enemies.  
 And each fight against an enemy consists of a sequence of turns.
 
-![hexakill-cli](/assets/img/blog/game_diagram.svg)
+![hexakill-cli](/images/blog/game_diagram.svg)
 
 ### 3.1 Turn loop
 
@@ -258,4 +258,4 @@ In a short future, I will try to implement it inside a game engine instead of Re
 
 I hope you enjoyed this post!
 
-![code_gif_from_giphy](/assets/img/blog/endings/1.gif)
+![code_gif_from_giphy](/images/blog/endings/1.gif)

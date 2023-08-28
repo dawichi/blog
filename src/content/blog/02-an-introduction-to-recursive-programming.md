@@ -111,4 +111,4 @@ Recursive programming is a way to solve problems that contain themselves. Is ext
 
 So take care with recursive programming!
 
-![code_gif_from_giphy](/assets/img/blog/endings/2.gif)
+![code_gif_from_giphy](/images/blog/endings/2.gif)
