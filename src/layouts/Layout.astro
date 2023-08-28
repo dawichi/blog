@@ -1,39 +1,38 @@
---- 
+---
 interface Props {
-	title: string;
+    title: string
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props
+import '../styles/global.scss'
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width' />
+        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+        <meta name='description' content="Dawichi's dev blog" />
+        <meta name='generator' content={Astro.generator} />
+        <title>{title}</title>
+
+        <!-- Bootstrap & Icons -->
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css' />
+
+        <!-- Animate CSS -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css' />
+    </head>
+    <body>
+        <nav class='border-b shadow-sm p-2 flex justify-between items-center'>
+            <a href='https://dawichi.dev' target='_blank' rel='noopener noreferrer' class='font-bold p-2 text-gray-900 hover:text-teal-400'>by dawichi</a>
+            <a href='https://github.com/dawichi' target='_blank' rel='noopener noreferrer' class='font-bold p-2 text-gray-900 hover:text-teal-400'>
+                <i class='bi bi-github text-2xl'></i>
+            </a>
+        </nav>
+
+        <main>
+            <slot />
+        </main>
+    </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151A;
-		background-size: 224px;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>

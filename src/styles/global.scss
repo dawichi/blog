@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono');
+
+html, body {
+	// font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	font-family: 'Roboto Mono', monospace;
+}
+
+* {
+    transition: background-color 0.2s;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #ccc;
+	border-radius: 5px;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 5px;
+
+	&:hover {
+		background: #14b8a6;
+	}
+}
+
+.post-article {
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	h1, h2, h3, h4 {
+		margin-top: 30px;
+		margin-bottom: 20px;
+		font-weight: 600;
+	}
+	h1, h2 {
+		text-align: center;
+		margin-top: 60px;
+	}
+	h1 {
+		font-size: 2rem;
+		line-height: 2rem;
+		margin-top: 20px;
+		margin-bottom: 40px;
+	}
+	h2 {
+		font-size: 1.5rem;
+		line-height: 1.75rem;
+	}
+	h3, h4 {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+	}
+	a {
+		color: #3b82f6;
+		font-weight: bold;
+	}
+	p, ol, ul {
+		margin-bottom: 20px;
+	}
+	ol, ul {
+		margin-left: 50px;
+	}
+	ol {
+		list-style-type: decimal;
+	}
+	ul {
+		list-style-type: disc;
+	}
+	img {
+		max-width: 100%;
+		margin: 0 auto;
+		border-radius: 8px;
+	}
+
+	p > code,
+	li > code {
+		background-color: #27272a;
+		padding: 1px 5px;
+		margin: 0 3px;
+		border-radius: 3px;
+		color: white;
+	}
+
+    blockquote {
+        background-color: rgba(160, 160, 160, 0.2);
+        border-left: 4px solid #e6e6e6;
+        padding-left: 20px;
+        margin: 20px 0;
+
+        p {
+            padding: 5px;
+        }
+    }
+
+	pre[class*='language-'] {
+		background-color: #27272a;
+		background-image: url(/assets/img/window-buttons.png);
+		background-repeat: no-repeat;
+		background-size: 44px 10px;
+		background-position: 16px 14px;
+		padding: 2rem 1rem 1rem 1rem;
+		overflow-x: auto;
+		border: none;
+		box-shadow: none;
+		
+		@media screen and (min-width: 500px) {
+			background-size: 66px 15px;
+			padding: 3rem 1rem 1rem 2rem;
+			font-size: 1.15rem;
+		}
+	}
+
+
+	pre > code {
+		background-color: #27272a;
+	}
+}
