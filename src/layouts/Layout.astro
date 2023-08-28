@@ -1,37 +1,38 @@
 ---
-interface Props {
-    title: string
-}
-
-const { title } = Astro.props
 import '../styles/global.scss'
 ---
 
 <!DOCTYPE html>
 <html lang='en'>
     <head>
-        <meta charset='UTF-8' />
-        <meta name='viewport' content='width=device-width' />
+        <!-- Global Metadata -->
+        <meta charset='utf-8' />
+        <meta name='viewport' content='width=device-width,initial-scale=1' />
         <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-        <meta name='description' content="Dawichi's dev blog" />
         <meta name='generator' content={Astro.generator} />
-        <title>{title}</title>
-
+        
+        <!-- Primary Meta Tags -->
+        <title>Dawichi's Blog</title>
+        <meta name='title' content="Dawichi's Blog" />
+        <meta name='description' content="Dawichi's dev blog" />
+        
         <!-- Bootstrap & Icons -->
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css' />
-
+        
         <!-- Animate CSS -->
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css' />
+        
     </head>
     <body>
-        <nav class='border-b shadow-sm p-2 flex justify-between items-center'>
+        <nav class='sticky top-0 z-10 bg-white border-b shadow-sm px-4 flex justify-between items-center'>
             <a href='https://dawichi.dev' target='_blank' rel='noopener noreferrer' class='font-bold p-2 text-gray-900 hover:text-teal-400'>by dawichi</a>
+            <a href='/' class='font-bold p-2 text-gray-900 hover:text-teal-400'>Dawichi's Blog</a>
             <a href='https://github.com/dawichi' target='_blank' rel='noopener noreferrer' class='font-bold p-2 text-gray-900 hover:text-teal-400'>
                 <i class='bi bi-github text-2xl'></i>
             </a>
         </nav>
 
-        <main>
+        <main class="relative">
             <slot />
         </main>
     </body>

@@ -1,0 +1,47 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage } = post.data;
+
+const { Content } = await post.render();
+---
+
+<Layout>
+    <div
+        class='container mx-auto h-[50vh] border border-x-0 border-t-0 bg-cover bg-center'
+        style={{ backgroundImage: `url(${heroImage})` }}
+    />
+
+    <a href="/" class="text-red-400 border border-red-400 px-4 py-1 rounded font-bold absolute top-[52vh] left-5 hover:bg-red-400 hover:text-white">
+        <i class='bi bi-arrow-left'></i> Back
+    </a>
+    <article class="dw-blog-article mx-auto max-w-[800px] mt-8">
+        <h1 class="title">{title}</h1>
+
+        <FormattedDate date={pubDate} />
+        {
+            updatedDate && (
+                <div class="last-updated-on">
+                    Last updated on <FormattedDate date={updatedDate} />
+                </div>
+            )
+        }
+        <hr />
+        <div class="container mx-auto">
+            <h1>{post.data.title}</h1>
+            <Content />
+        </div>
+    </article>
+</Layout>
