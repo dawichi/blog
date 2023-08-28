@@ -3,6 +3,7 @@ title: What is the dynamic programming (DP)?
 description: Finding the shortest path to a problem by mathematical optimization
 pubDate: 2022-03-07
 heroImage: '/images/blog/dynamic-programming.jpeg'
+tags: ['algorithms']
 ---
 
 Let's talk about fibonacci. Fibonacci sequence is a sequence of numbers where each number is the sum of the two preceding numbers.

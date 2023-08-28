@@ -1,9 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import { getCollection } from 'astro:content'
-import FormattedDate from '../components/FormattedDate.astro';
+import FormattedDate from '../components/FormattedDate.astro'
 
 const posts = (await getCollection('blog')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+const tags = {
+    javascript: 'bg-yellow-400/50 dark:text-yellow-100 text-yellow-900',
+    game: 'bg-green-400/50 dark:text-green-100 text-green-900',
+    algorithms: 'bg-red-400/50 dark:text-red-100 text-red-900',
+} as const
+
+// Prerender this page at build time
+export const prerender = true
 ---
 
 <Layout>
@@ -12,13 +20,19 @@ const posts = (await getCollection('blog')).sort((a, b) => a.data.pubDate.valueO
         <h2 class='text-center pt-4'>Notes about my personal experiences and learning pills</h2>
     </header>
 
-    <ul>
+    <ul class='mx-auto max-w-5xl grid lg:grid-cols-2 lg:gap-8 pt-12 pb-36 relative'>
         {
-            posts.map((post) => (
-                <li>
-                    <FormattedDate date={post.data.pubDate} />
-                    <a href={`/${post.slug}/`}>{post.data.title}</a>
-                </li>
+            posts.map(post => (
+                <a href={`/${post.slug}/`} class='p-8 border border-white/0 hover:border-teal-400/50 hover:bg-teal-300/5'>
+                    {post.data.tags.map(tag => (
+                        <span class={`inline-block ${tags[tag]} text-xs font-bold rounded-full px-3 py-1 mr-2`}>{tag}</span>
+                    ))}
+                    <h3 class='text-xl font-bold'>{post.data.title}</h3>
+                    <p class="py-2 opacity-80">{post.data.description}</p>
+                    <div class="font-bold text-sm">
+                        <FormattedDate date={post.data.pubDate} />
+                    </div>
+                </a>
             ))
         }
     </ul>
