@@ -2,7 +2,7 @@
 title: Callbacks, Promises and Async/Await
 description: The evolution of how to work with asynchronous code in JavaScript (ES6)
 pubDate: 2022-05-26
-heroImage: '/assets/img/blog/promises.jpg'
+heroImage: '/images/blog/promises.jpg'
 ---
 
 When you have asynchronous code, you have to deal with some problems that can arise.

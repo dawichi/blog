@@ -1,0 +1,22 @@
+<button id="dark-toggle" class="bg-gray-300 dark:bg-zinc-700 rounded-full px-2 py-1">
+    <i class="bi bi-moon-fill" />
+</button>
+
+<script is:inline>
+    function toggleDarkMode() {
+        const newMode = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark'
+        document.body.dataset.theme = newMode
+        localStorage.setItem('theme', newMode)
+        document.documentElement.classList.toggle('dark')
+    }
+
+    // Attach event listener
+    document.getElementById('dark-toggle').addEventListener('click', toggleDarkMode)
+
+    // Set initial theme
+    const theme = localStorage.getItem('theme')
+    if (theme === 'dark') {
+        document.body.dataset.theme = theme
+        document.documentElement.classList.toggle('dark')
+    }
+</script>
