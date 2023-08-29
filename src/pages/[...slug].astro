@@ -18,7 +18,7 @@ const { title, description, pubDate, heroImage } = post.data;
 const { Content } = await post.render();
 ---
 
-<Layout>
+<Layout title={title}>
     <div
         class='container mx-auto h-[50vh] border border-x-0 border-t-0 bg-cover bg-center'
         style={{ backgroundImage: `url(${heroImage})` }}
