@@ -22,7 +22,7 @@ export const prerender = true
 
     <ul class='mx-auto max-w-5xl grid lg:grid-cols-2 lg:gap-8 pt-12 pb-36 relative'>
         {
-            posts.map(post => (
+            posts.reverse().map(post => (
                 <a href={`/${post.slug}/`} class='p-8 border border-white/0 hover:border-teal-400/50 hover:bg-teal-300/5'>
                     {post.data.tags.map(tag => (
                         <span class={`inline-block ${tags[tag]} text-xs font-bold rounded-full px-3 py-1 mr-2`}>{tag}</span>
