@@ -6,46 +6,51 @@ heroImage: '/images/blog/promises.jpg'
 tags: ['javascript']
 ---
 
-When you have asynchronous code, you have to deal with some problems that can arise.
+Callbacks, promises and `async`/`await` keywords, are just different ways to work with asynchronous code in JavaScript.
 
-For example, when you need to get data from a server, you have to wait for the server to respond. In that case, one of the first solutions was to use callbacks.
+When you work with asynchronous code, you have to deal with new problems that synchronous code doesn't have. For example, when you need to get data from a server, you have to wait for the server to respond. In that case, one of the first solutions was to use callbacks.
 
 ## Callbacks
 
 > DEF: A callback is just a function that is passed to another function as an argument, and is executed after some operation is complete.
 
-Basic example:
+Imagine that we want to get data from a server, and we want to `console.log()` it after. We cannot do it in a synchronous way, because we don't have the data yet!
+So we wrap the call in a `getDataFromServer()` function, defining a `callback: Function` param that will be executed after the request is completed.
+
+This allows to pass any function as a callback, knowing that the logic will be executed after we got the data!
 
 ```ts
 function getDataFromServer(endpoint, callback) {
-  const xhr = new XMLHttpRequest();
-    xhr.open('GET', endpoint);
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', endpoint)
     xhr.onload = () => {
-      if (xhr.status === 200) {
-        callback(null, xhr.responseText);
-      } else {
-        callback(new Error('Request failed'));
-      }
-    };
+        if (xhr.status === 200) {
+            callback(null, xhr.responseText)
+        } else {
+            callback(new Error('Request failed'))
+        }
+    }
 }
 
+// The last param is the callback
+// callback: (err: Error, data: any) => void
 getDataFromServer('/users', (err, data) => {
     if (err) { // manage error
-        console.log(err);
+        console.log(err)
     } else { // manage data
-        console.log(data);
+        console.log(data)
     }
 })
 ```
 
 What is happening here?
 
-1. We define a function called `getDataFromServer` that takes two arguments: `endpoint` and `callback`.
+1. We defined a function called `getDataFromServer` that takes two arguments: `endpoint` and `callback`.
 
 > `Endpoint` is the endpoint of the server we want to get data from.  
 > `callback` is the function that will be called when the request is completed.
 
-2. When the `xhr.onload` event is triggered, we execute the `callback` function with an error or the data depedning of the request status.
+2. When the `xhr.onload` event is triggered, we execute the `callback` function passing an error or the data.
 
 By this way, we can get data from the server without worrying about the request status, because we can handle both cases with inside callback. Notice that we define the logic of the callback in the function call and not in the function definition, so we can reuse the same function for different requests with different implmentations.
 
@@ -88,23 +93,24 @@ getCup('Dawichi', (liquid) => {
 })
 ```
 
-As you can see, we have a lot of nested callbacks. This is a problem because we can't read the code and understand what is happening in an easy way. And this is just a 3-step process, so it's not a big deal; but if we have a lot of nested callbacks, it can be extremly hard to maintain and understand later.
+As you can see, we start apreciating the problem: we are nesting callbacks... and only with 3 steps! Imagine after 10, hard to read.
+
+This is a problem because we can't understand what is happening in an easy way. If we have a lot of nested callbacks, it can be extremly hard to maintain and understand later.
 
 That's why we have promises.
 
-
 ## Promises
 
-Promises are a way to handle asynchronous code in JavaScript. It's the new standard for asynchronous code in JavaScript, as most of the Node.js APIs are being changed from callbacks to promises.
+Promises are a way to handle asynchronous code in JavaScript. It's the new standard for asynchronous code in JavaScript, as most of the Node.js APIs are being changed from callbacks to promises. They were included in ES6, but the idea was used previously for many libraries like Q, Bluebird or JQuery.
 
-The idea of promises is to resolve or reject a value at some point in the future, so meanwhile we just 'promise' that the value will be available in a certain period of time.
+The idea of promises is to `resolve` or `reject` a value at some point in the future, so meanwhile we just `Promise` that the value will be available in a certain period of time.
 
 Let's see how it works:
 
 ```ts
 const getData = () => {
     return new Promise((resolve, reject) => {
-        // Let's simulate the request to a server with a delay
+        // Let's simulate a request to a server with 1s delay
         const error = false
         const data = { name: 'Dawichi', age: 25 }
         // After 1s, we resolve the promise with the data
@@ -130,7 +136,7 @@ This is the first step of the promise. We call the function and we get a promise
 
 ```ts
 getData()
-    .then((data) => {
+    .then(data => {
         console.log(data) // { name: 'Dawichi', age: 25 }
     })
 ```
@@ -153,28 +159,29 @@ const getCup = () => {
         resolve('coffee')
     })
 }
-const fillCup = (liquid) => {
+const fillCup = liquid => {
     return new Promise((resolve, reject) => {
         console.log(`Filling the cup with ${liquid}`)
         resolve('drink')
     })
 }
-const executeAction = (action) => {
+const executeAction = action => {
     return new Promise((resolve, reject) => {
         console.log(`To ${action} the cup`)
         resolve('Done!')
     })
 }
 ```
+
 The 3 functions are now encapsulated in promises. For sure this looks worse now, as de function definition have been increased. But then it comes the perks of promises: consume the function.
 
 We call them in the correct order:
 
 ```ts
 getCup()
-    .then((liquid) => fillCup(liquid))
-    .then((action) => executeAction(action))
-    .then((result) => {
+    .then(liquid => fillCup(liquid))
+    .then(action => executeAction(action))
+    .then(result => {
         console.log(result)
     })
 ```
@@ -187,12 +194,12 @@ Let's see `catch` and `finally`:
 
 ```ts
 getCup()
-    .then((liquid) => fillCup(liquid))
-    .then((action) => executeAction(action))
-    .then((result) => {
+    .then(liquid => fillCup(liquid))
+    .then(action => executeAction(action))
+    .then(result => {
         console.log(result)
     })
-    .catch((err) => {
+    .catch(err => {
         console.log(err)
     })
     .finally(() => {
@@ -203,7 +210,6 @@ getCup()
 Now, if any error happens along the process, it will be handled by the `catch` method, allowing us to handle the error.
 
 This is a very useful feature, but there is still a last beautiful tool: `async/await`.
-
 
 ## Async/Await
 
@@ -217,9 +223,9 @@ Let's change our last 3-step example into an async/await version:
 // Process function using 'then'
 const process = () => {
     getCup()
-        .then((liquid) => fillCup(liquid))
-        .then((action) => executeAction(action))
-        .then((result) => {
+        .then(liquid => fillCup(liquid))
+        .then(action => executeAction(action))
+        .then(result => {
             console.log(result)
         })
 }
@@ -241,12 +247,12 @@ The bad part is that to handle errors we have to use a `try/catch` block.
 // Process functino using 'then'
 const process = () => {
     getCup()
-        .then((liquid) => fillCup(liquid))
-        .then((action) => executeAction(action))
-        .then((result) => {
+        .then(liquid => fillCup(liquid))
+        .then(action => executeAction(action))
+        .then(result => {
             console.log(result)
         })
-        .catch((err) => {
+        .catch(err => {
             console.log(err)
         })
 }
@@ -266,11 +272,10 @@ const process = async () => {
 
 So in small cases it creates a lot of code that could be simpler with `then`, so it depends on the situation what is better.
 
-
 ## Conclusion
 
-Right now, to work with asynchronous code is easier than ever. We have extremly useful tools to handle all the uses cases and preferences, depending of what we need.
+Right now, to work with asynchronous code is easier than ever. We have extremly useful tools to handle all the use cases and preferences, depending of what we need.
 
-Pick the tool that you like the most, try it and use it to solve your own code problems, because that's the best way to learn.
+The most important thing is to understand the concepts behind each tool, and then choose the one that fits better in each situation!
 
 ![code_gif_from_giphy](/images/blog/endings/5.gif)
