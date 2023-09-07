@@ -124,7 +124,11 @@ html, body {
 	}
 
 
-	pre > code {
-		background-color: #27272a;
-	}
+	pre {
+        background-color: #27272a!important;
+
+        & > code {
+            background-color: #27272a;
+        }
+    }
 }
