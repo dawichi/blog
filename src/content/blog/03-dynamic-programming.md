@@ -2,7 +2,7 @@
 title: What is the dynamic programming (DP)?
 description: Finding the shortest path to a problem by mathematical optimization
 pubDate: 2022-03-07
-heroImage: '/images/blog/dynamic-programming.jpeg'
+heroImage: '/images/blog/headers/dynamic-programming.jpeg'
 tags: ['algorithms']
 ---
 

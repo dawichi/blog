@@ -2,7 +2,7 @@
 title: Map vs Object, comparison in JS (ES6)
 description: Differences between Map and Object collection data types in JavaScript
 pubDate: 2022-04-02
-heroImage: '/images/blog/map_vs_object.jpg'
+heroImage: '/images/blog/headers/map_vs_object.jpg'
 tags: ['javascript']
 ---
 

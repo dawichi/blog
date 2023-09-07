@@ -2,12 +2,12 @@
 title: An introduction to recursive programming
 description: How to manage when a solution for a problem contains the problem itself
 pubDate: 2022-02-27
-heroImage: '/images/blog/recursion.jpeg'
+heroImage: '/images/blog/headers/recursion.jpeg'
 tags: ['algorithms']
 ---
 
 
-Recursion consists of a problem with a solution that contains a smaller version of the same problem. In programming, it allows solving the problem by applying the same function several times to a value until finally reaching the result.
+>  _Recursion_ consists of a problem with a solution that contains a smaller version of the same problem. In programming, it allows solving the problem by applying the same function several times to a value until finally reaching the result.
 
 Let's see some examples!
 
@@ -41,7 +41,7 @@ f(2) = 2 * f(1)
 f(1) = 1 * f(0)
 f(0) = 0 * f(-1)
 f(-1) = -1 * f(-2)
-... to infinity
+... ad infinitum
 ```
 
 A recursive algorithm needs 2 cases:
