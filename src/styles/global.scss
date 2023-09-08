@@ -34,19 +34,19 @@ html, body {
 .dw-blog-article {
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	h1, h2, h3, h4 {
-		margin-top: 30px;
-		margin-bottom: 20px;
+		padding-top: 50px;
+		padding-bottom: 20px;
 		font-weight: 600;
 	}
 	h1, h2 {
 		text-align: center;
-		margin-top: 60px;
+		padding-top: 60px;
 	}
 	h1 {
 		font-size: 2rem;
 		line-height: 2rem;
-		margin-top: 20px;
-		margin-bottom: 40px;
+		padding-top: 20px;
+		padding-bottom: 40px;
 	}
 	h2 {
 		font-size: 1.5rem;
