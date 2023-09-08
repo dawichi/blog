@@ -1,34 +1,69 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import { CollectionEntry, getCollection } from 'astro:content'
+import Layout from '../layouts/Layout.astro'
+import FormattedDate from '../components/FormattedDate.astro'
 
+// Fetch the post data to build static paths
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+    const posts = await getCollection('blog')
+    return posts.map(post => ({
+        params: { slug: post.slug },
+        props: post,
+    }))
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<'blog'>
 
-const post = Astro.props;
-const { title, description, pubDate, heroImage } = post.data;
+const post = Astro.props
+const { title, description, pubDate, heroImage } = post.data
 
-const { Content } = await post.render();
+const { Content } = await post.render()
 ---
 
-<Layout title={title}>
-    <div
-        class='container mx-auto h-[50vh] border border-x-0 border-t-0 bg-cover bg-center'
-        style={{ backgroundImage: `url(${heroImage})` }}
-    />
+<Layout title={title} description={description}>
+    <div class='container mx-auto h-[50vh] border border-x-0 border-t-0 bg-cover bg-center' style={{ backgroundImage: `url(${heroImage})` }}></div>
 
-    <article class="dw-blog-article mx-auto max-w-5xl mt-8 mb-20 px-4">
+    <!-- TOC: hidden under 'xl:' -->
+    <div class='sticky top-0'>
+        <div class='left-4 top-8 mt-8 hidden xl:absolute xl:block'>
+            <p class='font-bold tracking-wider p-2'>Table of contents</p>
+            <ul id='table-of-contents'></ul>
+        </div>
+    </div>
+
+    <article class='dw-blog-article mx-auto mb-20 mt-8 max-w-5xl px-4 xl:mx-0 xl:ml-auto 2xl:mx-auto'>
         <FormattedDate date={pubDate} />
-        <div class="container mx-auto">
+        <div class='container mx-auto'>
             <h1>{post.data.title}</h1>
             <Content />
         </div>
     </article>
 </Layout>
+
+<script is:inline>
+// Find all h1, h2, h3 elements inside the article
+const article = document.getElementsByClassName('dw-blog-article')[0]
+const headings = article.querySelectorAll('h2, h3')
+const toc = document.getElementById('table-of-contents')
+
+headings.forEach(k => {
+    // create a link inside toc
+    const li = document.createElement('li')
+    const a = document.createElement('a')
+
+    a.href = '#' + k.id
+    a.innerText = k.innerText
+
+    const margins = {
+        H2: '0rem',
+        H3: '1rem',
+    }
+
+    a.style.marginLeft = margins[k.nodeName]
+    a.className = 'hover:underline p-2'
+    li.style.paddingBottom = '0.5rem'
+
+    // add the link to the TOC
+    li.appendChild(a)
+    toc.appendChild(li)
+})
+</script>
