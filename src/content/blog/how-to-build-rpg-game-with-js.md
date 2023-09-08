@@ -31,7 +31,7 @@ So, the first goal was set, and I started coding it!
 
 The intention was to use OOP for entity generation. I defined a basic entity with the common stats and actions for both the enemies and the player.
 
-#### 2.1 - BaseEntity
+### 2.1 - BaseEntity
 
 Because the game was meant to have 2 types of damage (physical and magic), it also needed 2 different methods of taking damage (`receiveAttack` and `receiveMagic`), so each applies armor reduction or MagicResist to the damage before passing the value to the `_getDamage` function.
 
@@ -81,7 +81,7 @@ export class BaseEntity {
 }
 ```
 
-#### 2.2 - Character
+### 2.2 - Character
 
 Now comes the base for all playable characters. Unlike enemies, player characters have the ability to:
 
@@ -125,7 +125,7 @@ export class Character extends BaseEntity {
 }
 ```
 
-#### 2.3 - Enemies
+### 2.3 - Enemies
 
 To create the enemies, we can directly use the BaseEntity without a base "Enemy" class, modifying some options to change each enemy a bit. Example:
 
@@ -226,7 +226,6 @@ while (playing) {
 }
 ```
 
-
 ## 4. Problems found and how I solved them
 
 During the development of the game, I found some problems. I was not able to solve them all, but I managed to find some of them.
@@ -249,10 +248,9 @@ This, besides to offer a better experience, doesn't make the game as complex as 
 
 The attack has a better chance to hit (90%), making sure you will probably be able to deal damage (80 to 140% of your AD). Meanwhile, the magic has a lower chance to hit (70%), but with a extremly wide range of damage (30 to 200% of your AP), allowing funny coinflip decisions using magic in a decisive moment.
 
-
 ## 5. Conclusion
 
-This is a very simple game, but it's a good example of how to implement different playable characters, multiple enemies generation with it's own stats and how to use the RNG to make the game more interesting. I learned a lot about the game loop, and how the logic implementation ends modifying the player experience. 
+This is a very simple game, but it's a good example of how to implement different playable characters, multiple enemies generation with it's own stats and how to use the RNG to make the game more interesting. I learned a lot about the game loop, and how the logic implementation ends modifying the player experience.
 
 In a short future, I will try to implement it inside a game engine instead of React, and see if it's possible to take the game to the next level.
 

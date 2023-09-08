@@ -35,9 +35,11 @@ function getDataFromServer(endpoint, callback) {
 // The last param is the callback
 // callback: (err: Error, data: any) => void
 getDataFromServer('/users', (err, data) => {
-    if (err) { // manage error
+    if (err) {
+        // manage error
         console.log(err)
-    } else { // manage data
+    } else {
+        // manage data
         console.log(data)
     }
 })
@@ -84,9 +86,9 @@ const executeAction = (action, cb) => {
 Now, we can call the functions in the correct order:
 
 ```ts
-getCup('Dawichi', (liquid) => {
-    fillCup(liquid, (action) => {
-        executeAction(action, (result) => {
+getCup('Dawichi', liquid => {
+    fillCup(liquid, action => {
+        executeAction(action, result => {
             console.log(result)
         })
     })
@@ -135,10 +137,9 @@ console.log(data) // Promise { <pending> }
 This is the first step of the promise. We call the function and we get a promise of a value. So to be able to get the value, we have to call the `then` method.
 
 ```ts
-getData()
-    .then(data => {
-        console.log(data) // { name: 'Dawichi', age: 25 }
-    })
+getData().then(data => {
+    console.log(data) // { name: 'Dawichi', age: 25 }
+})
 ```
 
 What is happening here?

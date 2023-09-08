@@ -118,21 +118,30 @@ As any iterable, map can be iterated directly with `for ... of` and built-in `fo
 
 ```ts
 // Map
-for (const item of map) { /* item: [key, value] */ }
-for (const [key, value] of map) { /* */ }
+for (const item of map) {
+    /* item: [key, value] */
+}
+for (const [key, value] of map) {
+    /* */
+}
 
-map.forEach((item) => { /* */ })
+map.forEach(item => {
+    /* */
+})
 ```
 
 Meanwhile, with Object, we use `for ... in` or `Object.keys()` to iterate.
 
 ```ts
 // Object
-for (const key in obj) { /* */ }
+for (const key in obj) {
+    /* */
+}
 
-Object.keys(obj).forEach((key) => { /* */ })
+Object.keys(obj).forEach(key => {
+    /* */
+})
 ```
-
 
 ## When to use each one?
 
@@ -149,7 +158,7 @@ const obj = {
     name: 'David',
     print: function sayName() {
         return `Hi I am ${this.name}!`
-    }
+    },
 }
 
 obj.print() // Hi I am David!
@@ -160,9 +169,12 @@ If you try to do it with Map, you just can't
 ```ts
 const map = new Map([
     ['name', 'David'],
-    ['print', function sayName() {
-        return `Hi I am ${this.name}!`
-    }]
+    [
+        'print',
+        function sayName() {
+            return `Hi I am ${this.name}!`
+        },
+    ],
 ])
 
 map.get('print')() // Hi I am !
@@ -170,6 +182,6 @@ map.get('print')() // Hi I am !
 
 ## Conclusion
 
-Object is more than a hash table, with inner logic, inheritance and more flexible features. In the other hand, Map has better performance when we want to store large sets of data, specially if all the keys and values are the same type.
+Object is more than a hash table, with inner logic, inheritance and more flexible features. On the other hand, Map has better performance when we want to store large sets of data, specially if we want to search or iterate over them.
 
-![code_gif_from_giphy](/images/blog/endings/4.gif)
+![code_gif_from_giphy](/images/blog/endings/2.gif)
