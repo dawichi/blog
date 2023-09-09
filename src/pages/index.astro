@@ -15,21 +15,24 @@ const tags = {
 export const prerender = true
 ---
 
-<Layout title="Dawichi - Blog" description="My Blog! Notes about personal experiences and learning pills">
+<Layout title='Dawichi - Blog' description='My Blog! Notes about personal experiences and learning pills'>
     <header class='pt-20'>
-        <h1 class='text-6xl text-center tracking-tighter font-bold'>Software Development</h1>
-        <h2 class='text-center pt-4'>Notes about personal experiences and learning pills</h2>
+        <h1 class='text-center text-6xl font-bold tracking-tighter'>Software Development</h1>
+        <h2 class='pt-4 text-center'>Notes about personal experiences and learning pills</h2>
     </header>
 
-    <ul class='mx-auto max-w-5xl grid lg:grid-cols-2 lg:gap-8 pt-12 pb-36 relative'>
+    <ul class='relative mx-auto grid max-w-5xl pb-36 pt-12 lg:grid-cols-2 lg:gap-8'>
         {
             posts.reverse().map(post => (
-                <a href={`/${post.slug}/`} class='p-8 border border-white/0 hover:border-teal-400/50 hover:bg-teal-300/5'>
+                <a
+                    href={`/${post.slug}/`}
+                    class='border border-white/0 p-8 hover:border-teal-400/50 hover:bg-teal-300/5 hover:shadow-lg hover:shadow-teal-400/40'
+                >
                     {post.data.tags.map(tag => (
-                        <span class={`inline-block ${tags[tag]} text-xs font-bold rounded-full px-3 py-1 mr-2`}>{tag}</span>
+                        <span class={`inline-block ${tags[tag]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</span>
                     ))}
                     <h3 class='text-xl font-bold'>{post.data.title}</h3>
-                    <p class="py-2 opacity-80">{post.data.description}</p>
+                    <p class='py-2 opacity-80'>{post.data.description}</p>
                     <FormattedDate date={post.data.pubDate} />
                 </a>
             ))

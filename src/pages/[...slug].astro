@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
 import FormattedDate from '../components/FormattedDate.astro'
 
@@ -25,12 +25,13 @@ const { Content } = await post.render()
     <!-- TOC: hidden under 'xl:' -->
     <div class='sticky top-0'>
         <div class='left-4 top-8 mt-8 hidden xl:absolute xl:block'>
-            <p class='font-bold tracking-wider p-2'>Table of contents</p>
+            <p class='py-1 font-bold tracking-wider'>Table of contents</p>
+            <hr class='pb-2' />
             <ul id='table-of-contents'></ul>
         </div>
     </div>
 
-    <article class='dw-blog-article mx-auto mb-20 mt-8 max-w-5xl px-4 xl:mx-0 xl:ml-auto 2xl:mx-auto'>
+    <article class='dw-blog-article mx-auto max-w-5xl px-4 pb-20 pt-8 xl:mx-0 xl:ml-auto 2xl:mx-auto'>
         <FormattedDate date={pubDate} />
         <div class='container mx-auto'>
             <h1>{post.data.title}</h1>
@@ -40,30 +41,47 @@ const { Content } = await post.render()
 </Layout>
 
 <script is:inline>
-// Find all h1, h2, h3 elements inside the article
-const article = document.getElementsByClassName('dw-blog-article')[0]
-const headings = article.querySelectorAll('h2, h3')
-const toc = document.getElementById('table-of-contents')
+/**
+ * This script is responsible for generating the table of contents for the posts
+ */
+// each time the page is swapped by the ViewTransitions API, run the TOC generator
+// document.addEventListener('astro:after-swap', generateTableOfContents)
 
-headings.forEach(k => {
-    // create a link inside toc
-    const li = document.createElement('li')
-    const a = document.createElement('a')
+// and each time the page is loaded
+generateTableOfContents()
 
-    a.href = '#' + k.id
-    a.innerText = k.innerText
+function generateTableOfContents() {
+    // if the current page is not a blog post, do nothing
+    if (!document.getElementsByClassName('dw-blog-article').length) return
 
-    const margins = {
-        H2: '0rem',
-        H3: '1rem',
-    }
+    // if the current page already has a TOC, do nothing
+    if (document.getElementById('table-of-contents').childElementCount) return
 
-    a.style.marginLeft = margins[k.nodeName]
-    a.className = 'hover:underline p-2'
-    li.style.paddingBottom = '0.5rem'
+    // create the TOC
+    const toc = document.getElementById('table-of-contents')
+    document
+        .getElementsByClassName('dw-blog-article')[0] // get the article
+        .querySelectorAll('h2, h3') // get all subheadings
+        .forEach(k => {
+            // create a link inside toc
+            const li = document.createElement('li')
+            const a = document.createElement('a')
 
-    // add the link to the TOC
-    li.appendChild(a)
-    toc.appendChild(li)
-})
+            a.href = '#' + k.id
+            a.innerText = k.innerText
+
+            const margins = {
+                H2: '0rem',
+                H3: '1rem',
+            }
+
+            a.style.marginLeft = margins[k.nodeName]
+            a.className = 'hover:underline p-2'
+            li.style.paddingBottom = '0.5rem'
+
+            // add the link to the TOC
+            li.appendChild(a)
+            toc.appendChild(li)
+        })
+}
 </script>
