@@ -9,6 +9,7 @@ const tags = {
     game: 'bg-green-400/50 dark:text-green-100 text-green-900',
     algorithms: 'bg-red-400/50 dark:text-red-100 text-red-900',
     engineering: 'bg-blue-400/50 dark:text-blue-100 text-blue-900',
+    haskell: 'bg-purple-400/50 dark:text-purple-100 text-purple-900',
 } as const
 
 // Prerender this page at build time
@@ -28,7 +29,7 @@ export const prerender = true
                     href={`/${post.slug}/`}
                     class='border border-white/0 p-8 hover:border-teal-400/50 hover:bg-teal-300/5 hover:shadow-lg hover:shadow-teal-400/40'
                 >
-                    {post.data.tags.map(tag => (
+                    {post.data.tags.sort().map(tag => (
                         <span class={`inline-block ${tags[tag]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</span>
                     ))}
                     <h3 class='text-xl font-bold'>{post.data.title}</h3>
