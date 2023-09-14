@@ -1,5 +1,5 @@
 ---
-title: Recursivity and dynamic programming (DP)
+title: Recursion and dynamic programming (DP)
 description: Finding the shortest path to a recursive problem by mathematical optimization
 pubDate: 2022-03-07
 heroImage: '/images/blog/headers/recursion.jpeg'
