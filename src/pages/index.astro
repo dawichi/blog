@@ -25,17 +25,16 @@ export const prerender = true
     <ul class='relative mx-auto grid max-w-5xl pb-36 pt-12 lg:grid-cols-2 lg:gap-8'>
         {
             posts.reverse().map(post => (
-                <a
-                    href={`/${post.slug}/`}
-                    class='border border-white/0 p-8 hover:border-teal-400/50 hover:bg-teal-300/5 hover:shadow-lg hover:shadow-teal-400/40'
-                >
-                    {post.data.tags.sort().map(tag => (
-                        <span class={`inline-block ${tags[tag]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</span>
-                    ))}
-                    <h3 class='text-xl font-bold'>{post.data.title}</h3>
-                    <p class='py-2 opacity-80'>{post.data.description}</p>
-                    <FormattedDate date={post.data.pubDate} />
-                </a>
+                <li class='border border-white/0 hover:border-teal-400/50 hover:bg-teal-300/5 hover:shadow-lg hover:shadow-teal-400/40'>
+                    <a href={`/${post.slug}/`} class='block p-8'>
+                        {post.data.tags.sort().map(tag => (
+                            <span class={`inline-block ${tags[tag]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</span>
+                        ))}
+                        <h3 class='text-xl font-bold'>{post.data.title}</h3>
+                        <p class='py-2 opacity-80'>{post.data.description}</p>
+                        <FormattedDate date={post.data.pubDate} />
+                    </a>
+                </li>
             ))
         }
     </ul>
