@@ -3,7 +3,7 @@ title: Introduction to fp-ts
 description: A practical introduction to fp-ts. Functional programming in TypeScript
 pubDate: 2023-09-08
 heroImage: /images/blog/headers/fp-ts.jpg
-tags: ['engineering', 'javascript']
+tags: ['typescript']
 ---
 
 **Functional programming** is a revolutionary approach to software development.

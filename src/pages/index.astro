@@ -5,11 +5,11 @@ import FormattedDate from '../components/FormattedDate.astro'
 
 const posts = (await getCollection('blog')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
 const tags = {
-    javascript: 'bg-yellow-400/50 dark:text-yellow-100 text-yellow-900',
-    game: 'bg-green-400/50 dark:text-green-100 text-green-900',
     algorithms: 'bg-red-400/50 dark:text-red-100 text-red-900',
-    engineering: 'bg-blue-400/50 dark:text-blue-100 text-blue-900',
+    engineering: 'bg-green-400/50 dark:text-green-100 text-green-900',
     haskell: 'bg-purple-400/50 dark:text-purple-100 text-purple-900',
+    javascript: 'bg-yellow-400/50 dark:text-yellow-100 text-yellow-900',
+    typescript: 'bg-blue-400/50 dark:text-blue-100 text-blue-900',
 } as const
 
 // Prerender this page at build time
@@ -17,12 +17,27 @@ export const prerender = true
 ---
 
 <Layout title='Dawichi - Blog' description='My Blog! Notes about personal experiences and learning pills'>
-    <header class='pt-20'>
+    <header class='pt-20 pb-4'>
         <h1 class='text-center text-6xl font-bold tracking-tighter'>Software Development</h1>
-        <h2 class='pt-4 text-center'>Notes about personal experiences and learning pills</h2>
+        <h2 class='pt-4 text-center'>Notes, insights and learning pills</h2>
     </header>
+    
+    <ul id="tags-list" class="flex justify-center">
+        {
+            posts.reduce((acc, post) => {
+                post.data.tags.forEach(tag => {
+                    if (!acc.includes(tag)) {
+                        acc.push(tag)
+                    }
+                })
+                return acc
+            }, [] as string[]).sort().map(tag => (
+                <button class={`inline-block ${tags[tag]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</button>
+            ))
+        }
+    </ul>
 
-    <ul class='relative mx-auto grid max-w-5xl pb-36 pt-12 lg:grid-cols-2 lg:gap-8'>
+    <ul id="posts-list" class='relative mx-auto grid max-w-5xl pb-36 pt-12 lg:grid-cols-2 lg:gap-8'>
         {
             posts.reverse().map(post => (
                 <li class='border border-white/0 hover:border-teal-400/50 hover:bg-teal-300/5 hover:shadow-lg hover:shadow-teal-400/40'>
@@ -39,3 +54,56 @@ export const prerender = true
         }
     </ul>
 </Layout>
+
+<script is:inline>
+    const posts = document.getElementById('posts-list').querySelectorAll('li')
+    const tags = document.getElementById('tags-list').querySelectorAll('button')
+
+    let last_tag_clicked = null
+
+    /**
+     * Opacity 20% to all posts except the ones with the given tag
+     * @param {string} tag_clicked
+     */
+    function updatePosts(tag_clicked) {
+        for (const post of posts) {
+            const spans_node = post.querySelectorAll('span')
+            const tags =  Array.from(spans_node).map(span => span.innerText)
+            
+            if (tags.includes(tag_clicked) || tag_clicked === 'all') {
+                post.classList.remove('opacity-20')
+            } else {
+                post.classList.add('opacity-20')
+            }
+        }
+    }
+
+    /**
+     * Opacity 20% to all tags except the one clicked
+     * @param {string} tag_clicked 
+     */
+    function updateTags(tag_clicked) {
+        for (const tag of tags) {
+            if (tag.innerHTML === tag_clicked || tag_clicked === 'all') {
+                tag.classList.remove('opacity-20')
+            } else {
+                tag.classList.add('opacity-20')
+            
+            }
+        }
+    }
+
+    // when click a tag -> highlight all posts with that tag
+    tags.forEach(tag => tag.addEventListener('click', () => {
+        if (tag.innerHTML === last_tag_clicked) {
+            updatePosts('all')
+            updateTags('all')
+            last_tag_clicked = null
+            return
+        }
+
+        updatePosts(tag.innerText)
+        updateTags(tag.innerText)
+        last_tag_clicked = tag.innerHTML
+    }))
+</script>
