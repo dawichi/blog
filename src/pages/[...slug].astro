@@ -36,7 +36,7 @@ const { Content } = await Astro.props.render()
             <FormattedDate date={pubDate} />
             <span>
                 {tags.sort().map(tag => (
-                    <span class={`inline-block ${tag_styles[tag]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</span>
+                    <span class={`inline-block ${tag_styles[tag as keyof typeof tag_styles]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</span>
                 ))}
             </span>
         </p>
