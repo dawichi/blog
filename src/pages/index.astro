@@ -4,7 +4,14 @@ import { getCollection } from 'astro:content'
 import FormattedDate from '../components/FormattedDate.astro'
 import { tag_styles } from '../config/tags-style'
 
-const posts = (await getCollection('blog')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+// Get all posts
+let posts = (await getCollection('blog')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+
+// Filter posts that are not visible in production
+const is_development = import.meta.env.NODE_ENV === 'development'
+if (!is_development) {
+    posts = posts.filter(post => post.data.visible === true)
+}
 
 
 // Prerender this page at build time
