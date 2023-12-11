@@ -27,7 +27,7 @@ export const prerender = true
                 })
                 return acc
             }, [] as string[]).sort().map(tag => (
-                <button class={`inline-block ${tag_styles[tag]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</button>
+                <button class={`inline-block ${tag_styles[tag as keyof typeof tag_styles]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</button>
             ))
         }
     </ul>
@@ -38,7 +38,7 @@ export const prerender = true
                 <li class='border border-white/0 hover:border-teal-400/50 hover:bg-teal-300/5 hover:shadow-lg hover:shadow-teal-400/40'>
                     <a href={`/${post.slug}/`} class='block p-8'>
                         {post.data.tags.sort().map(tag => (
-                            <span class={`inline-block ${tag_styles[tag]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</span>
+                            <span class={`inline-block ${tag_styles[tag as keyof typeof tag_styles]} mr-2 rounded-full px-3 py-1 text-xs font-bold`}>{tag}</span>
                         ))}
                         <h3 class='text-xl font-bold'>{post.data.title}</h3>
                         <p class='py-2 opacity-80'>{post.data.description}</p>
