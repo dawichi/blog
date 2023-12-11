@@ -12,6 +12,7 @@ const blog = defineCollection({
             .transform(val => new Date(val)),
         heroImage: z.string(),
         tags: z.array(z.string()),
+        visible: z.boolean(),
     }),
 })
 

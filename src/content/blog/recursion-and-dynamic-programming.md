@@ -4,6 +4,7 @@ description: Finding the shortest path to a recursive problem by mathematical op
 pubDate: 2022-03-07
 heroImage: '/images/blog/headers/recursion.jpeg'
 tags: ['engineering', 'algorithms']
+visible: true
 ---
 
 To understand what is dynamic programming, we first need to understand what is recursion.

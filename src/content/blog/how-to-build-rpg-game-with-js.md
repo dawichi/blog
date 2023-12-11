@@ -4,6 +4,7 @@ description: The process to plan, develop and deploy a basic RPG game made with 
 pubDate: 2022-02-07
 heroImage: 'https://raw.githubusercontent.com/Dawichi/hexakill/main/showcase.png'
 tags: ['javascript']
+visible: true
 ---
 
 A few months ago I came up with the idea of creating a game in JavaScript.

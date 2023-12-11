@@ -4,6 +4,7 @@ description: A practical introduction to fp-ts. Functional programming in TypeSc
 pubDate: 2023-09-08
 heroImage: /images/blog/headers/fp-ts.jpg
 tags: ['typescript']
+visible: true
 ---
 
 **Functional programming** is a revolutionary approach to software development.
