@@ -52,7 +52,7 @@ To avoid it, we need to define a **base case** that stops the recursion. A recur
 -   Base case
 -   Recursive case
 
-In our case, the base case is when `n = 0`, because `0! = 1` (and not `0 * f(-1)`).<br/>
+In this example, the base case is when `n = 0`, because `0! = 1` (and not `0 * f(-1)`).<br/>
 With this, we can successfully implement it in code in Python for example.
 
 ```python
@@ -81,7 +81,7 @@ Simple, right? Let's see another example!
 
 The well-known Fibonacci sequence is a sequence of numbers where each number is the sum of the two preceding numbers. It commonly starts from `0` and `1`, continuing with `0 1 1 2 3 5 8 13 21 ...`
 
-Again, we will define our base and recursive cases:
+Again, we will define the base and recursive cases:
 
 -   Base case: `n <= 1`
 -   Recursive case: `n > 1`
@@ -119,7 +119,7 @@ As we can see here, we are calculating the same numbers over and over again.
 -   `f(2)` occurs 3 times
 -   `f(1)` occurs 5 times
 
-This doesn't matter with such a small number as `f(5)`, but what happens when we calculate `f(50)`? Probably your program will stay stuck without end, because it's trapped in a loop calculating the same numbers over and over again, delaying probably minutes to finish.
+This doesn't matter with such a small number as `f(5)`, but what happens when we calculate `f(50)`? Probably your program will stay stuck without end, because it's trapped in a loop calculating the same numbers repeatedly, delaying probably minutes to finish.
 
 Let's measure a few examples:
 
@@ -131,15 +131,15 @@ f(45): 12s
 f(50): doesn't finish (minutes)
 ```
 
-The time keep increasing exponentially. So the problem is clear: we can't just calculate 200 times the same numbers.
+The time keep increasing exponentially. So, the problem is clear: we can't just calculate 200 times the same numbers.
 
-What if we just store the value of the numbers we calculated? So once we calculate `f(5)`, we can store it and check the result later in all the iterations of `f(5)`. This is called memoization.
+What if we just store the value of the numbers we calculated? Once we calculate `f(5)`, we can store it and check the result later in all the iterations of `f(5)`. This is called memoization.
 
 ## 4. Memoization
 
 Memoization it's a basic technique of Dynamic Programming (DP). It consists in store the values of the calculations, so we don't have to calculate them again.
 
-The concept is very similar to a cache. We are going to store the values in a dictionary or in an array so later we can access them instead of calculate them again.
+The concept is very similar to a cache. We are going to store the values in a dictionary or in an array so later we can access them instead of calculating them again.
 
 Example:
 
@@ -164,7 +164,7 @@ const fibonacci = (n: number): number => {
 What are we doing here?
 
 Once a number is calculated, we store it in the `memo[n]` position.<br/>
-So in any next iteration, we can check if the number is already stored in the memo, and if it is, we don't have to calculate it again.
+In any next iteration, we can check if the number is already stored in the memo, and if it is, we don't have to calculate it again.
 
 How long does it take to calculate the number now?
 
@@ -190,8 +190,8 @@ Why? Because we are using recursion, so each call generates a new function call 
 fibonacci(10_000) = RangeError: Maximum call stack size exceeded
 ```
 
-This error happens because we are overflowing the call stack with our multiple recursive calls.<br/>
-Here is when Dynamic Programming drive us to the second step: use our memo to convert our recursive function to a iterative one.
+This error happens because we are overflowing the call stack with multiple recursive calls.<br/>
+Here is when Dynamic Programming drive us to the second step: use memo to convert the recursive function to an iterative one.
 
 ```ts
 const fibonacci = n => {
@@ -211,7 +211,7 @@ If we try to call `fibonacci(10_000)` now, we won't get an error.
 fibonacci(10_000) = Infinity
 ```
 
-It gives us an `Infinity` because it overflows the maximun number than JavaScript can handle, but it doesn't break the program!
+It gives us an `Infinity` because it overflows the maximum number than JavaScript can handle, but it doesn't break the program!
 
 ## Conclusion
 
@@ -219,7 +219,7 @@ Recursive programming is very useful to solve certain problems with a short impl
 
 Once we detect one of these problems, we can use techniques of Dynamic Programming to optimize our code, like `memoization`.
 
-Also, depending on the problem, we can always consider to convert our recursive function into a iterative one, preventing the call stack overflow.
+Also, depending on the problem, we can always consider converting our recursive function into a iterative one, preventing the call stack overflow.
 
 This is just a basic example of the methodologies of Dynamic Programming. There are many more, but all of them consists in the same idea of optimizing the problem to avoid lose time and resources.
 
