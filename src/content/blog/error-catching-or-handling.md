@@ -4,7 +4,7 @@ description: From assumptions to assurance. Building error-free software by desi
 pubDate: 2023-12-13
 heroImage: '/images/blog/headers/error-handling.jpg'
 tags: ['engineering', 'typescript']
-visible: false
+visible: true
 ---
 
 In software engineering, errors are a daily thing. But the massive number of hours that I have spent tracking that `undefined` property that somehow was mutated along the process and messed up my code is uncountable. It was one of the main reasons why I jumped into TypeScript as soon as I could, as it helped me to prevent a lot this kind of errors. But still, it was not enough.
