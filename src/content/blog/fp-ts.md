@@ -15,7 +15,7 @@ To understand the benefits of `fp-ts`, we need to understand first functional pr
 
 ## Why functional programming?
 
-Because JavaScript is an agnostic language related to programming paradigms, it is possible to write code in a functional style. However, it is not a functional language, and we must to keep in mind the rules to avoid writing non-functional code.
+Because JavaScript is an agnostic language related to programming paradigms, it is possible to write code in a functional style. However, it is not a functional language, and we must keep in mind the rules to avoid writing non-functional code.
 
 Let's see a few examples comparing imperative and declarative code.
 
@@ -45,7 +45,7 @@ const sum = numbers
 
 This is why declarative code is getting more and more popular: it is easier to read and understand. Even with a simple example like this, it is clear the 3-step operation we are doing: `filter`, `map` and `reduce`.
 
-The idea behind functional programming, is to create small, reusable functions that define operations on data, which later can be composed to create more complex operations just chaining them. Of course this is a very basic example, but let's imagine each of these 3 steps were more complex operations. We could extract them to named functions like `even`, `square` and `sum` and then compose them like this:
+The idea behind functional programming, is to create small, reusable functions that define operations on data, which later can be composed to create more complex operations just chaining them. Of course, this is a very basic example, but let's imagine each of these 3 steps were more complex operations. We could extract them to named functions like `even`, `square` and `sum` and then compose them like this:
 
 ```ts
 const sum = numbers.filter(even).map(square).reduce(sum)
@@ -90,7 +90,7 @@ Each **output** of the previous function is passed as **input** to the next one.
 
 This is a very common pattern in functional programming, and it's called a [pipeline](<https://en.wikipedia.org/wiki/Pipeline_(computing)>).
 
-The another one is `flow()`. It is very similar to `pipe()`, but instead of using it to execute a series of operations, it is used to define a new function that will execute those operations. Think about it like a reusable pipeline.
+Another one is `flow()`. It is very similar to `pipe()`, but instead of using it to execute a series of operations, it is used to define a new function that will execute those operations. Think about it like a reusable pipeline.
 
 ```ts
 import { flow } from 'fp-ts/function'
@@ -134,7 +134,7 @@ const invert = (n: number): number => {
 
 Here, basically we are lying in the return type, as it is not a pure function. The return type is `: number`, but is it true? Does it actually return a number always? No, sometimes it throws an error. So, we are lying.
 
-Here is where it comes `Option`. You could think about it like a standarization of the `null` and `undefined` values, but with a lot of utilities to manage it.
+Here is where it comes `Option`. You could think about it like a standardization of the `null` and `undefined` values, but with a lot of utilities to manage it.
 
 ```ts
 import * as O from 'fp-ts/Option'
@@ -155,7 +155,7 @@ pipe(
     log, // log the messages
 )
 
-// There are another ways to manage it, like `getOrElse()`
+// There are other ways to manage it, like `getOrElse()`
 // Imagine that in case the input is 0, we want to return another value as default
 pipe(
     0, // input
@@ -165,11 +165,11 @@ pipe(
 )
 ```
 
-In the first case with the `match`, we return a string in both branches, so we could continue the pipeling with `log` without worrying about problems with the `invert`. In the second case, the `getOrElse` fills the gap of the `invert` function with a default value, so we can continue operating with numbers normally without messing the return type of the next steps.
+In the first case with the `match`, we return a string in both branches, so we could continue the pipeline with `log` without worrying about problems with the `invert`. In the second case, the `getOrElse` fills the gap of the `invert` function with a default value, so we can continue operating with numbers normally without messing the return type of the next steps.
 
 ### O.map + O.flatten + O.chain
 
-Imagine we have a table with movie titles and ratings, and we want a function that when we call it with the array of titles, it returns the title of the movie with the highest rating formatted as The most rated movie is: <title>.toUpperCase().
+Imagine we have a table with movie titles and ratings, and we want a function that when we call it with the array of titles, it returns the title of the movie with the highest rating formatted as the most rated movie is: <title>.toUpperCase().
 
 ```ts
 import * as O from 'fp-ts/lib/Option'
@@ -257,7 +257,7 @@ pipe(
 
 It is used to create a conditional flow. The equivalent to `else` in an `if`.
 
-Imagine that we have an array of kids, and we want to select whos gonna be the leader of the group depending on two conditions:
+Imagine that we have an array of kids, and we want to select who is going to be the leader of the group depending on two conditions:
 
 1. If a unique kid is the oldest one, he will be the leader
 2. If it is a draw, the kid with better grades will be the leader
@@ -306,7 +306,7 @@ By this way, we can set an alternative operation to be done in case the first on
 
 ## Either
 
-The `Option<>` was used to represent a value that may exists or not. This has a problem, that in case of not, `O.none` does not provide any information about why it does not exists. What if we want to know the reason to handle it later?
+The `Option<>` was used to represent a value that may exists or not. This has a problem, that in case of not, `O.none` does not provide any information about why it does not exist. What if we want to know the reason to handle it later?
 
 Here comes the `Either<>` type. It is used to represent a value that can be of two types: `Left<>` (error) or `Right<>` (value).
 
