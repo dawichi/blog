@@ -9,14 +9,14 @@ visible: true
 
 Callbacks, promises and `async`/`await` keywords, are just different ways to work with asynchronous code in JavaScript.
 
-When you work with asynchronous code, you have to deal with new problems that synchronous code doesn't have. For example, when you need to get data from a server, you have to wait for the server to respond. In that case, one of the first solutions was to use callbacks.
+When you work with asynchronous code, you must deal with new problems that synchronous code doesn't have. For example, when you need to get data from a server, you have to wait for the server to respond. In that case, one of the first solutions was to use callbacks.
 
 ## Callbacks
 
-> DEF: A callback is just a function that is passed to another function as an argument, and is executed after some operation is complete.
+> DEF: A callback is just a function that is passed to another function as an argument and is executed after some operation is complete.
 
 Imagine that we want to get data from a server, and we want to `console.log()` it after. We cannot do it in a synchronous way, because we don't have the data yet!
-So we wrap the call in a `getDataFromServer()` function, defining a `callback: Function` param that will be executed after the request is completed.
+So, we wrap the call in a `getDataFromServer()` function, defining a `callback: Function` param that will be executed after the request is completed.
 
 This allows to pass any function as a callback, knowing that the logic will be executed after we got the data!
 
@@ -55,13 +55,13 @@ What is happening here?
 
 2. When the `xhr.onload` event is triggered, we execute the `callback` function passing an error or the data.
 
-By this way, we can get data from the server without worrying about the request status, because we can handle both cases with inside callback. Notice that we define the logic of the callback in the function call and not in the function definition, so we can reuse the same function for different requests with different implmentations.
+By this way, we can get data from the server without worrying about the request status, because we can handle both cases with inside callback. Notice that we define the logic of the callback in the function call and not in the function definition, so we can reuse the same function for different requests with different implementations.
 
 ### The problem: Callback Hell
 
 There is a problem with this approach. If we have a lot of callbacks nested, it can be hard to read and understand.
 
-Example, let's create a 3-step process with callbacks. In this case, our process will be:
+For example, let's create a 3-step process with callbacks. In this case, our process will be:
 
 1. Get a cup
 2. Fill the cup with coffee
@@ -96,9 +96,9 @@ getCup('Dawichi', liquid => {
 })
 ```
 
-As you can see, we start apreciating the problem: we are nesting callbacks... and only with 3 steps! Imagine after 10, hard to read.
+As you can see, we start appreciating the problem: we are nesting callbacks... and only with 3 steps! Imagine after 10, hard to read.
 
-This is a problem because we can't understand what is happening in an easy way. If we have a lot of nested callbacks, it can be extremly hard to maintain and understand later.
+This is a problem because we can't understand what is happening in an easy way. If we have a lot of nested callbacks, it can be extremely hard to maintain and understand later.
 
 That's why we have promises.
 
@@ -106,7 +106,7 @@ That's why we have promises.
 
 Promises are a way to handle asynchronous code in JavaScript. It's the new standard for asynchronous code in JavaScript, as most of the Node.js APIs are being changed from callbacks to promises. They were included in ES6, but the idea was used previously for many libraries like Q, Bluebird or JQuery.
 
-The idea of promises is to `resolve` or `reject` a value at some point in the future, so meanwhile we just `Promise` that the value will be available in a certain period of time.
+The idea of promises is to `resolve` or `reject` a value at some point in the future, so meanwhile we just `Promise` that the value will be available in a certain period.
 
 Let's see how it works:
 
@@ -135,7 +135,7 @@ const data = getData()
 console.log(data) // Promise { <pending> }
 ```
 
-This is the first step of the promise. We call the function and we get a promise of a value. So to be able to get the value, we have to call the `then` method.
+This is the first step of the promise. We call the function and we get a promise of a value, and to get the actual value, we have to call the `then` method.
 
 ```ts
 getData().then(data => {
@@ -241,7 +241,7 @@ const process = async () => {
 }
 ```
 
-This allows to write code in a less nested way in some situations, and is being really used when we have a lot of complex `then` logic.
+This allows to write code in a less nested way in some situations and is being really used when we have a lot of complex `then` logic.
 
 The bad part is that to handle errors we have to use a `try/catch` block.
 
@@ -276,7 +276,7 @@ So in small cases it creates a lot of code that could be simpler with `then`, so
 
 ## Conclusion
 
-Right now, to work with asynchronous code is easier than ever. We have extremly useful tools to handle all the use cases and preferences, depending of what we need.
+Right now, to work with asynchronous code is easier than ever. We have extremely useful tools to handle all the use cases and preferences, depending on what we need.
 
 The most important thing is to understand the concepts behind each tool, and then choose the one that fits better in each situation!
 
