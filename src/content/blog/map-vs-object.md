@@ -7,12 +7,12 @@ tags: ['javascript']
 visible: true
 ---
 
-Map and Object are collection data types. Both store data in pairs, with a unique key and a value maped to that key.
+Map and Object are collection data types. Both store data in pairs, with a unique key and a value mapped to that key.
 
 -   Object: `{ 1: 'one', 2: 'two' }`
 -   Map: `{ (1, 'one'), (2, 'two' ) }`
 
-Map is mainly used for fast searching and looking up data, as it has some big differences with Object who make it perfect for that cases.
+Map is mainly used for fast searching and looking up data, as it has some big differences with Object who make it perfect for those cases.
 
 -   **Key**: In Object the key must be simple types (string or number). But in Map you can use anything as key, such as functions or other objects.
 
@@ -85,7 +85,7 @@ delete obj.key
 obj.key = undefined
 ```
 
-The problem here is that the first one performs a much heavier operation. And the second, doesn't actually delete the pair, it just sets the value of that key to `undefined`, but it still remains in the object, so if you iterate over the keys with `Object.keys()` you still will go through that one.
+The problem here is that the first one performs a much heavier operation. And the second, doesn't delete the pair, it just sets the value of that key to `undefined`, but it remains in the object, so if you iterate over the keys with `Object.keys()` you still will go through that one.
 
 Meanwhile in map, we have 2 nice methods to delete:
 
@@ -94,7 +94,7 @@ map.delete('key') // @returns boolean
 map.clear()
 ```
 
-To achieve the same capability of `map.clear()` on Objects, we will need to iterate through all of their properties and remove them one by one.
+To achieve the same capability of `map.clear()` on Objects, we will need to iterate through all their properties and remove them one by one.
 
 Both will need a `O(1)` to delete a single key and `O(n)` to delete the whole structure depending on the number of pairs.
 
@@ -183,6 +183,6 @@ map.get('print')() // Hi I am !
 
 ## Conclusion
 
-Object is more than a hash table, with inner logic, inheritance and more flexible features. On the other hand, Map has better performance when we want to store large sets of data, specially if we want to search or iterate over them.
+Object is more than a hash table, with inner logic, inheritance and more flexible features. On the other hand, Map has better performance when we want to store large sets of data, especially if we want to search or iterate over them.
 
 ![code_gif_from_giphy](/images/blog/endings/2.gif)
