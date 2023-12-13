@@ -13,9 +13,9 @@ I had no knowledge about game programming up to that point and I was afraid of h
 
 Check the result here: [hexakill.vercel.app](https://hexakill.vercel.app) 🎉🎉🎉
 
-## 1. Planing
+## 1. Planning
 
-My first impresion when trying to build it, was that going straight into a web version might be too intimidating, so I spent a few days testing things out in a basic terminal version which you can find here: [hexakill-cli](https://github.com/dawichi/hexakill-cli).
+My first impression when trying to build it, was that going straight into a web version might be too intimidating, so I spent a few days testing things out in a basic terminal version which you can find here: [hexakill-cli](https://github.com/dawichi/hexakill-cli).
 
 ![hexakill-cli](https://raw.githubusercontent.com/dawichi/hexakill-cli/main/showcase3.png)
 
@@ -84,12 +84,12 @@ export class BaseEntity {
 
 ### 2.2 - Character
 
-Now comes the base for all playable characters. Unlike enemies, player characters have the ability to:
+Now comes the base for all playable characters. Unlike enemies, player characters can:
 
 -   Gain experience.
 -   Level up once the experience reaches the limit expected.
 
-So we extend the base and add that logic.
+So, we extend the base and add that logic.
 
 ```ts
 export class Character extends BaseEntity {
@@ -105,9 +105,9 @@ export class Character extends BaseEntity {
         this.ad += 20
     }
 
-    // Each time you reach 100 exp points, you levelup.
+    // Each time you reach 100 exp points, you level up.
     // The while is to allow levelUp 2 at a time if you gain +200 exp.
-    // Returning a boolean let us know if a level up ocurred.
+    // Returning a boolean let us know if a level up occurred.
     gainExp(exp: number) {
         const exp_total = this.exp + exp
         if (exp_total >= 100) {
@@ -235,25 +235,25 @@ During the development of the game, I found some problems. I was not able to sol
 
 It was hard to find the right way to equilibrate the damage scale of the player against the health scale of the enemies.
 
-As the game is currently "infinite" (it ends once the player dies), in advanced levels, a small imbalance makes the enemies stronger than the player, or viceversa. This caused a lot of funny moments with the enemy or the player dying oneshoted by absurd amounts of damage.
+As the game is currently "infinite" (it ends once the player dies), in advanced levels, a small imbalance makes the enemies stronger than the player, or vice versa. This caused a lot of funny moments with the enemy or the player dying oneshoted by absurd amounts of damage.
 
 ### Generation of enemies
 
-I experimented with different ways to generate enemies, with random stats (to add a little of RNG), but finnaly I decided to go with a defined list of enemies, with small differences in stats. The RNG was added in the value of the hits when attacking, so it makes more interesting the combats.
+I experimented with different ways to generate enemies, with random stats (to add a little of RNG), but finally I decided to go with a defined list of enemies, with small differences in stats. The RNG was added in the value of the hits when attacking, so it makes more interesting the combats.
 
 ### Damage types
 
 I wanted to offer different types of damage (physical, magic, etc), so the player could choose which one to use depending on the situation and the enemy. To do that, I added the `armor` and `mr` stats to the entities, and the `receiveAttack` and `receiveMagic` methods to the BaseEntity class. The `receiveAttack` method is called when the entity recieves an attack, and the `receiveMagic` when magic is used.
 
-This, besides to offer a better experience, doesn't make the game as complex as I inted, so I added a second layer: RNG to the damage.
+This, besides to offer a better experience, doesn't make the game as complex as I intend, so I added a second layer: RNG to the damage.
 
-The attack has a better chance to hit (90%), making sure you will probably be able to deal damage (80 to 140% of your AD). Meanwhile, the magic has a lower chance to hit (70%), but with a extremly wide range of damage (30 to 200% of your AP), allowing funny coinflip decisions using magic in a decisive moment.
+The attack has a better chance to hit (90%), making sure you will probably be able to deal damage (80 to 140% of your AD). Meanwhile, the magic has a lower chance to hit (70%), but with a extremely wide range of damage (30 to 200% of your AP), allowing funny coinflip decisions using magic in a decisive moment.
 
 ## 5. Conclusion
 
-This is a very simple game, but it's a good example of how to implement different playable characters, multiple enemies generation with it's own stats and how to use the RNG to make the game more interesting. I learned a lot about the game loop, and how the logic implementation ends modifying the player experience.
+This is a very simple game, but it is a good example of how to implement different playable characters, multiple enemies generation with its own stats and how to use the RNG to make the game more interesting. I learned a lot about the game loop, and how the logic implementation ends modifying the player experience.
 
-In a short future, I will try to implement it inside a game engine instead of React, and see if it's possible to take the game to the next level.
+In a short future, I will try to implement it inside a game engine instead of React and see if it is possible to take the game to the next level.
 
 I hope you enjoyed this post!
 
