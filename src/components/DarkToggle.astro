@@ -1,22 +1,63 @@
-<button id='dark-toggle' class='rounded-full bg-gray-300 px-2 py-1 dark:bg-zinc-700' type='button' title='Toggle dark mode'>
-    <i class='bi bi-moon-fill'></i>
+<button
+    id='darkmode-button'
+    class='h-[34px] w-[58px] cursor-pointer rounded-full border-2 border-orange-100 bg-orange-50 focus:outline-none dark:border-transparent dark:bg-zinc-900'
+>
+    <span
+        id='darkmode-switch'
+        class='pointer-events-none flex h-[30px] w-[30px] translate-x-[0px] transform items-center justify-center rounded-full bg-orange-200 ring-0 transition duration-700 ease-in-out'
+    >
+        <i id='darkmode-icon' class='bi bi-sun-fill animate__animated animate__rotateInUpRight text-black'></i>
+    </span>
 </button>
 
 <script is:inline>
-function toggleDarkMode() {
-    const newMode = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark'
-    document.body.dataset.theme = newMode
-    localStorage.setItem('theme', newMode)
-    document.documentElement.classList.toggle('dark')
-}
+    const darkModeSwitch = document.getElementById('darkmode-switch')
+    const darkModeIcon = document.getElementById('darkmode-icon')
+    const darkModeButton = document.getElementById('darkmode-button')
+    const darkModeIconClass = {
+        moon: 'bi bi-moon-fill animate__animated animate__rotateIn text-white',
+        sun: 'bi bi-sun-fill animate__animated animate__rotateInUpRight text-black',
+    }
+    const darkModeSwitchClass = {
+        sun: ['translate-x-[0px]', 'bg-orange-200'],
+        moon: ['translate-x-[24px]', 'bg-zinc-700'],
+    }
 
-// Attach event listener
-document.getElementById('dark-toggle').addEventListener('click', toggleDarkMode)
+    let darkMode = false
+    let done = false
 
-// Set initial theme
-const theme = localStorage.getItem('theme')
-if (theme === 'dark') {
-    document.body.dataset.theme = theme
-    document.documentElement.classList.toggle('dark')
-}
+    // Load preferred color scheme
+    // 1. Check if the user has a preference for this website (localStorage)
+    if (localStorage.getItem('theme')) {
+        console.log(`${localStorage.getItem('theme')} mode selected on localStorage`)
+        localStorage.getItem('theme') === 'dark' ? toggleDarkMode() : null
+        done = true
+    }
+
+    // 2. Check if the user has a preference for the system (OS)
+    if (!done && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        console.log('dark mode selected on OS')
+        toggleDarkMode()
+    }
+
+    function toggleDarkMode() {
+        darkMode = !darkMode
+
+        // classes
+        darkModeIcon.className = darkMode ? darkModeIconClass.moon : darkModeIconClass.sun
+        darkModeSwitch.classList.remove(darkMode ? darkModeSwitchClass.sun[0] : darkModeSwitchClass.moon[0])
+        darkModeSwitch.classList.remove(darkMode ? darkModeSwitchClass.sun[1] : darkModeSwitchClass.moon[1])
+        darkModeSwitch.classList.add(darkMode ? darkModeSwitchClass.moon[0] : darkModeSwitchClass.sun[0])
+        darkModeSwitch.classList.add(darkMode ? darkModeSwitchClass.moon[1] : darkModeSwitchClass.sun[1])
+
+        const newMode = darkMode ? 'dark' : 'light'
+        document.body.dataset.theme = newMode
+        localStorage.setItem('theme', newMode)
+        document.documentElement.classList.toggle('dark')
+    }
+
+    darkModeButton.addEventListener('click', () => {
+        toggleDarkMode()
+        darkModeIcon.className = darkMode ? darkModeIconClass.moon : darkModeIconClass.sun
+    })
 </script>
