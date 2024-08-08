@@ -24,7 +24,7 @@ export const prerender = true
         <h2 class='pt-4 text-center'>Notes, insights and learning pills</h2>
     </header>
     
-    <ul id="tags-list" class="flex justify-center">
+    <ul id="tags-list" class="flex flex-wrap gap-y-2 justify-center">
         {
             posts.reduce((acc, post) => {
                 post.data.tags.forEach(tag => {
